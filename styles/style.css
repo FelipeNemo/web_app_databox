@@ -1,0 +1,57 @@
+/* Fundo da página com imagem e leve escurecimento , rgba(42, 177, 187) */ 
+body {
+    margin: 0;
+    background: 
+        linear-gradient(rgb(99, 48, 103),rgba(243, 144, 40)),   
+        url("https://images.unsplash.com/photo-1634942537032-e7e2bbf73588?auto=format&fit=crop&w=1470&q=80");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+/* Camada de vidro por cima do fundo 
+.glass-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.25); /* leve escurecimento */
+    /*  z-index: 0; /* atrás do conteúdo 
+}
+
+*//* Estilo do cabeçalho do Streamlit com efeito de vidro fosco */
+
+
+header[data-testid="stHeader"] {
+    background-color: rgba(0, 0, 0, 0.4); /* Preto translúcido */
+    backdrop-filter: blur(6px);          /* Efeito de vidro fosco */
+    -webkit-backdrop-filter: blur(6px);  /* Suporte para Safari */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.407); /* Borda suave */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.946);          /* Sombra */
+}
+
+
+
+
+/* Container principal do Streamlit transparente para não cobrir o texto */
+div.stApp {
+    background-color: transparent !important;
+    padding: 1rem 2rem;
+}
+
+/* Texto branco para títulos, parágrafos e labels */
+h1, h2, h3, h4, h5, h6, p, label, span {
+    color: #e7dede !important;
+}
+
+/* Se quiser um box com fundo escuro sem esconder o texto */
+.highlight-box {
+    background-color: rgba(99, 48, 103);
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+}

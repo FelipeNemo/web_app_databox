@@ -1,0 +1,12 @@
+[theme]
+base="dark"
+primaryColor="#00ADB5"        # Cor principal da sua marca
+backgroundColor="#121212"     # Fundo escuro elegante
+secondaryBackgroundColor="#1E1E1E"
+textColor="#FAFAFA"
+font="sans serif"             # Pode ser: "sans serif", "serif", "monospace"
+
+[server]
+headless = true
+port = 8501
+enableCORS = false
