@@ -1,0 +1,13 @@
+import React from 'react';
+import './CardButton.css';
+
+const CardButton = ({ imagePath, text, onClick }) => {
+    return (
+        <div className="card-button" onClick={onClick}>
+            <img src={imagePath} alt={text} className="card-button-icon" />
+            <p className="card-button-text">{text}</p>
+        </div>
+    );
+};
+
+export default CardButton;
