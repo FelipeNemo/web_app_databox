@@ -1,0 +1,12 @@
+Here are the contents for the file: /databox-django-react/databox-django-react/backend/applications/home/urls.py
+
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.mostrar_home, name='home'),
+    path('diagnostico/', views.mostrar_diagnostico, name='diagnostico'),
+    path('estrategias/', views.mostrar_estrategias, name='estrategias'),
+    path('dashboards/', views.mostrar_dashboards, name='dashboards'),
+    path('perguntas/', views.mostrar_perguntas, name='perguntas'),
+]
