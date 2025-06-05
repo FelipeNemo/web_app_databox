@@ -12,7 +12,28 @@ from utils import aplicar_css_personalizado, enviar_email
 # =====================
 st.set_page_config(page_title="DATABOX", page_icon=" ", layout="wide")
 load_dotenv()
+
 aplicar_css_personalizado()
+
+# Adicione logo após o aplicar_css_personalizado() ou no início da função mostrar_home()
+
+
+
+st.markdown("""
+    <div style="position: fixed; top: 60px; right: 32px; z-index: 9999;">
+        <a href="?login=1">
+            <button style="background: #FFD60A; color: #22223b; border: none; border-radius: 6px; padding: 8px 20px; font-size: 16px; font-weight: bold; cursor: pointer;">
+                Login
+            </button>
+        </a>
+    </div>
+""", unsafe_allow_html=True)
+
+# Detecta o clique no botão HTML via query string
+if st.query_params.get("login") == "1":
+    st.session_state.pagina = 'login'
+    st.query_params.clear()
+    st.rerun()
 
 EMAIL_REMETENTE = os.getenv("EMAIL_REMETENTE")
 SENHA_APP = os.getenv("SENHA_APP")
@@ -30,9 +51,13 @@ def hash_password(password):
 # HOME
 # =====================
 def mostrar_home():
-    logo_path = "data/logo_databox.png"
-    if os.path.exists(logo_path):
-        with open(logo_path, "rb") as f:
+    logo_databox = "data/logo_databox.png"
+    icon_data = "data/data_icon.png"  
+    icon_ia = "data/ia_icon.png"  
+    icon_dash = "data/dash_icon.png"  
+
+    if os.path.exists(logo_databox):
+        with open(logo_databox, "rb") as f:
             logo_base64 = base64.b64encode(f.read()).decode()
         st.markdown(f"""
         <div style='display: flex; align-items: center; justify-content: center; gap: 20px; background-color: white; padding: 20px; border-radius: 16px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); margin-bottom: 30px;'>
@@ -40,6 +65,17 @@ def mostrar_home():
             <h1 style='color: #FFD60A; margin: 0; font-size: 56px;'>DATABOX</h1>
         </div>
         """, unsafe_allow_html=True)
+
+        # Carregar ícones em base64
+    def img_to_base64(path):
+        if os.path.exists(path):
+            with open(path, "rb") as f:
+                return base64.b64encode(f.read()).decode()
+        return ""
+
+    icon_data_b64 = img_to_base64(icon_data)
+    icon_ia_b64 = img_to_base64(icon_ia)
+    icon_dash_b64 = img_to_base64(icon_dash)
 
     # --- Estilo dos botões (opcional)
     st.markdown("""
@@ -57,29 +93,63 @@ def mostrar_home():
         </style>
     """, unsafe_allow_html=True)
 
+
+
     # Subtítulo
     st.markdown("<h2 style='text-align: center; color: white;'>Transforme seu negócio com IA</h2>", unsafe_allow_html=True)
     
 
-    # --- Botões que redirecionam para seções usando links HTML
-    col1, col2, col3 = st.columns(3)
-    with col1:
-        st.markdown("<a href='#secao1'><button class='botao-scroll'>Mapeie seu cenário atual e encontre oportunidades</button></a>", unsafe_allow_html=True)
-    with col2:
-        st.markdown("<a href='#secao2'><button class='botao-scroll'>Use IA para escalar suas decisões</button></a>", unsafe_allow_html=True)
-    with col3:
-        st.markdown("<a href='#secao3'><button class='botao-scroll'>Visualize suas métricas com clareza</button></a>", unsafe_allow_html=True)
+    # --- Botões centralizados com HTML
+    st.markdown(f"""
+    <div style="display: flex; justify-content: center; gap: 100px; margin-bottom: 32px;">
+        <a href='#secao1' style="text-align: center;">
+            <img src="data:image/png;base64,{icon_data_b64}" style="width:280px; height:280px; display:block; margin:auto;"/>
+            <button class='botao-scroll'>Mapeie seu cenário atual</button>
+        </a>
+        <a href='#secao2' style="text-align: center;">
+            <img src="data:image/png;base64,{icon_ia_b64}" style="width:280px; height:280px; display:block; margin:auto;"/>
+            <button class='botao-scroll'>IA para escalar suas decisões</button>
+        </a>
+        <a href='#secao3' style="text-align: center;">
+            <img src="data:image/png;base64,{icon_dash_b64}" style="width:280px; height:280px; display:block; margin:auto;"/>
+            <button class='botao-scroll'>Visualize suas métricas</button>
+        </a>
+    </div>
+    """, unsafe_allow_html=True)
 
     st.markdown("---")
-    st.markdown("\n")
-    col4, col5, col6 = st.columns(3)
     st.markdown("<h3 style='text-align: center; color: black;'>Pronto para começar?</h3>", unsafe_allow_html=True)
-    if col5.button("Quero responder algumas perguntas"):
+
+    # Botão HTML centralizado
+    st.markdown("""
+    <div style="display: flex; justify-content: center; margin-bottom: 32px;">
+        <a href="?perguntas=1">
+            <button class="botao-scroll" style="min-width:320px;">Quero responder algumas perguntas</button>
+        </a>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Detecta o clique no botão HTML via query string
+    if st.query_params.get("perguntas") == "1": #O clique no botão adiciona ?perguntas=1 na URL
+         # O Python detecta esse parâmetro e faz a navegação para o formulário.
         st.session_state.pagina = 'perguntas'
+        st.query_params.clear()
         st.rerun()
 
+    st.markdown("---")
+
+    # Centralizando o botão com HTML e usando o botão do Streamlit para navegação
+    #st.markdown('<div style="display: flex; justify-content: center; margin-bottom: 32px;">', unsafe_allow_html=True)
+    #if st.button("Quero responder algumas perguntas", key="perguntas"):
+    #    st.session_state.pagina = 'perguntas'
+    #    st.rerun()
+    #st.markdown('</div>', unsafe_allow_html=True)
+
+
+
     # --- Seção 1
-    st.markdown("<div style='margin-top: 300px;' id='secao1'></div>", unsafe_allow_html=True)
+    st.markdown("<div id='secao1' style='scroll-margin-top: 500px;'></div>", unsafe_allow_html=True)
+    #st.markdown("<div style='margin-top: 80px;' id='secao1'></div>", unsafe_allow_html=True)
     st.markdown("<h3 style='text-align: center; color: white;'>Mapeie seu cenário atual e encontre oportunidades</h2>", unsafe_allow_html=True)
     #st.header("Mapeie seu cenário atual e encontre oportunidades")
     st.write("""Com nossa análise detalhada, você obtém um panorama completo do seu negócio," \
@@ -89,7 +159,8 @@ def mostrar_home():
              """)
 
     # --- Seção 2
-    st.markdown("<div style='margin-top: 300px;' id='secao2'></div>", unsafe_allow_html=True)
+    st.markdown("<div id='secao2' style='scroll-margin-top: 500px;'></div>", unsafe_allow_html=True)
+    #st.markdown("<div style='margin-top: 80px;' id='secao2'></div>", unsafe_allow_html=True)
     st.markdown("<h3 style='text-align: center; color: white;'>Use IA para escalar suas decisões</h2>", unsafe_allow_html=True)
     #st.header("Use IA para escalar suas decisões")
     st.write("""Aproveite o poder da inteligência artificial para automatizar análises complexas e prever tendências do seu mercado. 
@@ -97,7 +168,8 @@ def mostrar_home():
                 """)
 
     # --- Seção 3
-    st.markdown("<div style='margin-top: 300px;' id='secao3'></div>", unsafe_allow_html=True)
+    st.markdown("<div id='secao3' style='scroll-margin-top: 500px;'></div>", unsafe_allow_html=True)
+    #st.markdown("<div style='margin-top: 80px;' id='secao3'></div>", unsafe_allow_html=True)
     st.markdown("<h3 style='text-align: center; color: white;'>Visualize suas métricas com clareza</h2>", unsafe_allow_html=True)
     #st.header("Visualize suas métricas com clareza")
     st.write("""Transforme números e dados brutos em dashboards intuitivos e interativos. 
@@ -149,9 +221,9 @@ def mostrar_login():
 # =====================
 # SIDEBAR & ROTAS
 # =====================
-with st.sidebar:
-    if st.button("Login"):
-        st.session_state.pagina = 'login'
+#with st.sidebar:
+    #if st.button("Login"):
+        #st.session_state.pagina = 'login'
 
 # Roteamento
 

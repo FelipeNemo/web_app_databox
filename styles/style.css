@@ -34,7 +34,7 @@ body {
   z-index: 0;
 }
 
-/* Header com efeito fosco e borda */
+/* Header com efeito fosco e borda 
 header[data-testid="stHeader"] {
   background-color: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(6px);
@@ -42,6 +42,31 @@ header[data-testid="stHeader"] {
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
 }
+# SOBREPOSIÇÃO DO HEADER
+header[data-testid="stHeader"] {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+  
+# ESCONDE O HEADER COMPLETAMENTE
+header[data-testid="stHeader"] {
+  display: none !important;
+}
+*/
+
+header[data-testid="stHeader"] {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+
+
 
 /* Transparente para não interferir na imagem de fundo */
 div.stApp {
