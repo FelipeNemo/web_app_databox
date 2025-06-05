@@ -6,6 +6,8 @@ import base64
 import hashlib
 from streamlit.components.v1 import html
 from utils import aplicar_css_personalizado, enviar_email
+from master.imper import pagina_master
+
 
 # =====================
 # CONFIGURAÇÃO INICIAL
@@ -16,8 +18,6 @@ load_dotenv()
 aplicar_css_personalizado()
 
 # Adicione logo após o aplicar_css_personalizado() ou no início da função mostrar_home()
-
-
 
 st.markdown("""
     <div style="position: fixed; top: 60px; right: 32px; z-index: 9999;">
@@ -178,7 +178,6 @@ def mostrar_home():
             """)
 
 
-
 # =====================
 # PERGUNTAS
 # =====================
@@ -208,8 +207,9 @@ def mostrar_login():
     senha = st.text_input("Senha", type="password")
     if st.button("Entrar"):
         if email == EMAIL_REMETENTE and hash_password(senha) == hash_password(SENHA_APP):
-            st.session_state.pagina = 'home'
-            st.success("Login realizado com sucesso!")
+            st.session_state["usuario_master"] = True  # Marca como master
+            st.session_state.pagina = 'pagina_master'  # Vai para a página mestre
+            st.success("Login master realizado com sucesso!")
             st.rerun()
         else:
             st.error("E-mail ou senha incorretos.")
@@ -218,20 +218,22 @@ def mostrar_login():
         st.session_state.pagina = 'home'
         st.rerun()
 
-# =====================
-# SIDEBAR & ROTAS
-# =====================
-#with st.sidebar:
-    #if st.button("Login"):
-        #st.session_state.pagina = 'login'
+
+
+def pagina_usuario():
+    st.title("Área do Usuário")
+    st.write("Bem-vindo à área exclusiva do usuário comum.")
 
 # Roteamento
 
+# Roteamento
 if st.session_state.pagina == 'home':
     mostrar_home()
-
 elif st.session_state.pagina == 'login':
     mostrar_login()
-
 elif st.session_state.pagina == 'perguntas':
     mostrar_perguntas()
+elif st.session_state.pagina == 'pagina_master':
+    pagina_master()
+elif st.session_state.pagina == 'pagina_usuario':
+    pagina_usuario()
