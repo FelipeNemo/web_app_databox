@@ -25,9 +25,7 @@ if 'pagina' not in st.session_state:
 def hash_password(password):
     return hashlib.sha256(password.encode()).hexdigest()
 
-# =====================
-# HOME
-# =====================
+
 # =====================
 # HOME
 # =====================
@@ -81,8 +79,8 @@ def mostrar_home():
         st.rerun()
 
     # --- Seção 1
-    st.markdown("<div style='margin-top: 400px;' id='secao1'></div>", unsafe_allow_html=True)
-    st.markdown("<h2 style='text-align: center; color: white;'>Mapeie seu cenário atual e encontre oportunidades</h2>", unsafe_allow_html=True)
+    st.markdown("<div style='margin-top: 300px;' id='secao1'></div>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: center; color: white;'>Mapeie seu cenário atual e encontre oportunidades</h2>", unsafe_allow_html=True)
     #st.header("Mapeie seu cenário atual e encontre oportunidades")
     st.write("""Com nossa análise detalhada, você obtém um panorama completo do seu negócio," \
              "identificando pontos fortes, fraquezas e novas oportunidades de crescimento. \
@@ -91,16 +89,16 @@ def mostrar_home():
              """)
 
     # --- Seção 2
-    st.markdown("<div style='margin-top: 400px;' id='secao2'></div>", unsafe_allow_html=True)
-    st.markdown("<h2 style='text-align: center; color: white;'>Use IA para escalar suas decisões</h2>", unsafe_allow_html=True)
+    st.markdown("<div style='margin-top: 300px;' id='secao2'></div>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: center; color: white;'>Use IA para escalar suas decisões</h2>", unsafe_allow_html=True)
     #st.header("Use IA para escalar suas decisões")
     st.write("""Aproveite o poder da inteligência artificial para automatizar análises complexas e prever tendências do seu mercado. 
                 Nossa plataforma ajuda você a otimizar campanhas, reduzir custos e aumentar resultados com recomendações personalizadas baseadas em dados e algoritmos avançados.
                 """)
 
     # --- Seção 3
-    st.markdown("<div style='margin-top: 400px;' id='secao3'></div>", unsafe_allow_html=True)
-    st.markdown("<h2 style='text-align: center; color: white;'>Visualize suas métricas com clareza</h2>", unsafe_allow_html=True)
+    st.markdown("<div style='margin-top: 300px;' id='secao3'></div>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: center; color: white;'>Visualize suas métricas com clareza</h2>", unsafe_allow_html=True)
     #st.header("Visualize suas métricas com clareza")
     st.write("""Transforme números e dados brutos em dashboards intuitivos e interativos. 
             Acompanhe em tempo real os principais indicadores do seu negócio, entenda o desempenho das suas estratégias 
@@ -132,6 +130,22 @@ def mostrar_perguntas():
         st.session_state.pagina = 'home'
         st.rerun()
 
+def mostrar_login():
+    st.title("🔐 Login")
+    email = st.text_input("E-mail")
+    senha = st.text_input("Senha", type="password")
+    if st.button("Entrar"):
+        if email == EMAIL_REMETENTE and hash_password(senha) == hash_password(SENHA_APP):
+            st.session_state.pagina = 'home'
+            st.success("Login realizado com sucesso!")
+            st.rerun()
+        else:
+            st.error("E-mail ou senha incorretos.")
+
+    if st.button("⬅️ Voltar"):
+        st.session_state.pagina = 'home'
+        st.rerun()
+
 # =====================
 # SIDEBAR & ROTAS
 # =====================
@@ -140,7 +154,12 @@ with st.sidebar:
         st.session_state.pagina = 'login'
 
 # Roteamento
+
 if st.session_state.pagina == 'home':
     mostrar_home()
+
+elif st.session_state.pagina == 'login':
+    mostrar_login()
+
 elif st.session_state.pagina == 'perguntas':
     mostrar_perguntas()
