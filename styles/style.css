@@ -88,3 +88,36 @@ button {
 button:hover {
   background-color: var(#FF7F3F);
 }
+
+/* Adiciona Bootstrap customizado mantendo as cores da paleta */
+.btn-warning {
+  background-color: var(--cor-amarelo) !important;
+  color: var(--cor-escura) !important;
+  font-weight: bold;
+  border-radius: 16px !important;
+  border: none !important;
+}
+
+.btn-warning:hover {
+  background-color: #ffe066 !important;
+  color: var(--cor-escura) !important;
+}
+
+/* Centraliza botão grande */
+.central-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 32px 0 16px 0;
+}
+
+/* Ajusta cards dos ícones */
+.shadow {
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4) !important;
+}
+.bg-white {
+  background-color: white !important;
+}
+.rounded-4 {
+  border-radius: 16px !important;
+}
