@@ -1,4 +1,3 @@
-import streamlit as st
 import os
 from utils import *
 from dotenv import load_dotenv
@@ -24,58 +23,15 @@ SENHA_APP = os.getenv("SENHA_APP")
 if 'pagina' not in st.session_state:
     st.session_state.pagina = 'home'
 
-
-
-# =============================
-# Função da tela inicial
-# =============================
-def mostrar_home():
-        with st.container():
-            if logo:
-                logo_base64 = base64.b64encode(open(logo_path, "rb").read()).decode()
-        st.markdown(f"""
-        <div style='display: flex; align-items: center; gap: 20px;'>
-            <img src="data:image/png;base64,{logo_base64}" width="80"/>
-            <h1 style='color:#00ADB5; margin: 0;'>DATABOX</h1>
-        </div>
-        """, unsafe_allow_html=True)
-
-        st.subheader("Decisões que valem a pena")
-        st.markdown("#### Ciência de dados para quem se cansou de errar.")
-
-        st.markdown("""
-        <p style='font-size:16px; line-height:1.6'>
-        Durante muito tempo, tomei decisões no chute — na vida, nos projetos, nos negócios.<br>
-        Erros que poderiam ter sido evitados com análise e estatística, mas que custaram caro.
-        </p>
-        <p style='font-size:16px; line-height:1.6'>
-        Foi aí que percebi: <strong>dados não são só números — são uma direção</strong>.<br>
-        Uma direção que aponta para a verdade. Nem sempre fácil de ser ouvida. Mas sempre procurada.
-        </p>
-        """, unsafe_allow_html=True)
-
-        st.markdown("---")
-        st.markdown("### Precisa de um modelo data-driven no seu negócio?")
-        st.markdown("""
-        -  Diagnóstico de dados  
-        -  Estratégias com IA  
-        -  Dashboards de performance
-        """)
-
-        st.markdown("---")
-        st.subheader("Pronto para começar?")
-
-        if st.button("Quero responder algumas perguntas"):
-            st.session_state.pagina = 'perguntas'
-            st.rerun()
-
 # =============================
 # Função para exibir perguntas
 # =============================
 def mostrar_home():
     with st.container():
         if logo:
-            logo_base64 = base64.b64encode(open(logo_path, "rb").read()).decode()
+            with open(logo_path, "rb") as f:
+                logo_base64 = base64.b64encode(f.read()).decode()
+
             st.markdown(f"""
             <div style='
                 display: flex;
@@ -83,111 +39,81 @@ def mostrar_home():
                 justify-content: center;
                 gap: 20px;
                 width: 100%;
-                background-color: rgba(0, 0, 0, 0.4);
+                background-color: white;
                 padding: 20px;
                 border-radius: 16px;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
                 margin-bottom: 30px;
             '>
-                <img src="data:image/png;base64,{logo_base64}" width="140" style="border-radius: 12px;" />
+                <img src="data:image/png;base64,{logo_base64}" 
+                     style="max-width: 200px; height: auto; border-radius: 12px; image-rendering: auto;" />
                 <h1 style='
-                    color: #00ADB5;
+                    color: #FFD60A;
                     margin: 0;
-                    font-size: 50px;
+                    font-size: 56px;
                     font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", sans-serif;
                     font-weight: 700;
                 '>DATABOX</h1>
             </div>
             """, unsafe_allow_html=True)
+        # Subtítulo
+    st.markdown("<h2 style='text-align: center; color: white;'>Transforme seu negócio com IA</h2>", unsafe_allow_html=True)
+    
+    
+    def card_botao(imagem_path, texto, destino):
+        with open(imagem_path, "rb") as f:
+            img_base64 = base64.b64encode(f.read()).decode()
+        st.markdown(f"""
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="/?page={destino}" style="text-decoration: none;">
+                    <div style="
+                        display: inline-block;
+                        padding: 10px;
+                        border-radius: 12px;
+                        background-color: white;
+                        transition: background-color 0.3s;
+                        border-radius: 16px;
+                        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+                    " onmouseover="this.style.backgroundColor='#e0e0e0'" 
+                    onmouseout="this.style.backgroundColor='#f0f0f0'">
+                        <img src="data:image/png;base64,{img_base64}" width="220px" style="border-radius: 12px;" />
+                        <p style="margin-top: 12px; color: black; font-weight: bold; width: 220px;">{texto}</p>
+                    </div>
+                </a>
+            </div>
+        """, unsafe_allow_html=True)
 
-    st.subheader("Decisões que valem a pena")
-    st.markdown("#### Ciência de dados para quem se cansou de errar.")
 
-    st.markdown("""
-    <p style='font-size:16px; line-height:1.6'>
-    Durante muito tempo, tomei decisões no chute — na vida, nos projetos, nos negócios.<br>
-    Erros que poderiam ter sido evitados com análise e estatística, mas que custaram caro.
-    </p>
-    <p style='font-size:16px; line-height:1.6'>
-    Foi aí que percebi: <strong>dados não são só números — são uma direção</strong>.<br>
-    Uma direção que aponta para a verdade. Nem sempre fácil de ser ouvida. Mas sempre procurada.
-    </p>
-    """, unsafe_allow_html=True)
+    # Layout com 3 colunas
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        card_botao("data/data_icon.png", "Mapeie seu cenário atual e encontre oportunidades.", "diagnostico")
+
+    with col2:
+        card_botao("data/ia_icon.png", "Use IA para escalar suas decisões.", "estrategias")
+
+    with col3:
+        card_botao("data/dash_icon.png", "Visualize suas métricas com clareza.", "dashboards")
+
+    # Detectar clique via URL
+    page = st.query_params.get("page", None)
+    if page:
+        st.session_state.pagina = page
+        st.query_params.clear()
+        st.rerun()
+
 
     st.markdown("---")
-    st.markdown("### Precisa de um modelo data-driven no seu negócio?")
-    st.markdown("""
-    -  Diagnóstico de dados  
-    -  Estratégias com IA  
-    -  Dashboards de performance
-    """)
-
-    st.markdown("---")
-    st.subheader("Pronto para começar?")
-
-    if st.button("Quero responder algumas perguntas"):
+    st.markdown("\n")
+    col4, col5, col6 = st.columns(3)
+    st.markdown("<h3 style='text-align: center; color: black;'>Pronto para começar?</h3>", unsafe_allow_html=True)
+    if col5.button("Quero responder algumas perguntas"):
         st.session_state.pagina = 'perguntas'
         st.rerun()
 
-# def mostrar_home():
-#     with st.container():
-#         if logo:
-#             logo_base64 = base64.b64encode(open(logo_path, "rb").read()).decode()
-#         st.markdown(f"""
-#         <div style='
-#             display: flex; 
-#             align-items: center; 
-#             gap: 20px;
-#             padding: 12px 24px;
-#             background-color: rgba(0, 0, 0, 0.4);
-#             backdrop-filter: blur(6px);
-#             -webkit-backdrop-filter: blur(6px);
-#             border-bottom: 1px solid rgba(255, 255, 255, 0.407);
-#             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.946);
-#             border-radius: 8px;
-#             max-width: fit-content;
-#             margin: 0 auto;  /* centraliza horizontalmente */
-#         '>
-#             <img src="data:image/png;base64,{logo_base64}" width="100" />
-#             <h1 style='
-#                 color: #FFD60A;
-#                 margin: 0;
-#                 font-size: 56px;
-#                 font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", sans-serif;
-#                 font-weight: 700;
-#                 text-shadow: 0 0 8px rgba(255, 214, 10, 0.7);
-#             '>DATABOX</h1>
-#         </div>
-#         """, unsafe_allow_html=True)
-#
-#         st.subheader("Decisões que valem a pena")
-#         st.markdown("#### Ciência de dados para quem se cansou de errar.")
-#
-#         st.markdown("""
-#         <p style='font-size:16px; line-height:1.6'>
-#         Durante muito tempo, tomei decisões no chute — na vida, nos projetos, nos negócios.<br>
-#         Erros que poderiam ter sido evitados com análise e estatística, mas que custaram caro.
-#         </p>
-#         <p style='font-size:16px; line-height:1.6'>
-#         Foi aí que percebi: <strong>dados não são só números — são uma direção</strong>.<br>
-#         Uma direção que aponta para a verdade. Nem sempre fácil de ser ouvida. Mas sempre procurada.
-#         </p>
-#         """, unsafe_allow_html=True)
-#
-#         st.markdown("---")
-#         st.markdown("### Precisa de um modelo data-driven no seu negócio?")
-#         st.markdown("""
-#         -  Diagnóstico de dados  
-#         -  Estratégias com IA  
-#         -  Dashboards de performance
-#         """)
-#
-#         st.markdown("---")
-#         st.subheader("Pronto para começar?")
-#
-#         if st.button("Quero responder algumas perguntas"):
-#             st.session_state.pagina = 'perguntas'
-#             st.rerun()
+
+
 
 # Função para exibir perguntas
 def mostrar_perguntas():
@@ -210,6 +136,7 @@ def mostrar_perguntas():
     if st.button("⬅️ Voltar"):
         st.session_state.pagina = 'home'
         st.rerun()
+
 
 
 # =============================

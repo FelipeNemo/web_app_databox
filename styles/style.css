@@ -1,57 +1,90 @@
-/* Fundo da página com imagem e leve escurecimento , rgba(42, 177, 187) */ 
+:root {
+  --cor-roxo: #8B3DFF;
+  --cor-verde-agua: #30E0C0;
+  --cor-azul-vibrate: #1f42f3;
+  --cor-laranja: #f79307;
+  --cor-amarelo: #FFD53D;
+  --cor-magenta: #9C1A74;
+  --cor-escura: #1E1E1E;
+  --cor-texto: #dcdcdc;
+}
+
 body {
-    margin: 0;
-    background: 
-        linear-gradient(rgb(99, 48, 103),rgba(243, 144, 40)),   
-        url("https://images.unsplash.com/photo-1634942537032-e7e2bbf73588?auto=format&fit=crop&w=1470&q=80");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
+  margin: 0;
+  background: 
+    linear-gradient(rgba(42, 177, 187, 0.3), #dcdcdc),
+    url("https://images.unsplash.com/photo-1634942537032-e7e2bbf73588?auto=format&fit=crop&w=1470&q=80");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--cor-escura);
 }
-/* Camada de vidro por cima do fundo 
+/* Camada de vidro */
 .glass-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    background-color: rgba(0, 0, 0, 0.25); /* leve escurecimento */
-    /*  z-index: 0; /* atrás do conteúdo 
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background-color: rgba(0, 0, 0, 0.25);
+  z-index: 0;
 }
 
-*//* Estilo do cabeçalho do Streamlit com efeito de vidro fosco */
-
-
+/* Header com efeito fosco e borda */
 header[data-testid="stHeader"] {
-    background-color: rgba(0, 0, 0, 0.4); /* Preto translúcido */
-    backdrop-filter: blur(6px);          /* Efeito de vidro fosco */
-    -webkit-backdrop-filter: blur(6px);  /* Suporte para Safari */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.407); /* Borda suave */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.946);          /* Sombra */
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
 }
 
-
-
-
-/* Container principal do Streamlit transparente para não cobrir o texto */
+/* Transparente para não interferir na imagem de fundo */
 div.stApp {
-    background-color: transparent !important;
-    padding: 1rem 2rem;
+  background-color: transparent !important;
+  padding: 1rem 2rem;
 }
 
-/* Texto branco para títulos, parágrafos e labels */
-h1, h2, h3, h4, h5, h6, p, label, span {
-    color: #e7dede !important;
+/* Títulos brancos */
+h1 {
+  color: var(--cor-azul-vibrate) !important;  /* var(--cor-texto) = branco (#dcdcdc) */
 }
 
-/* Se quiser um box com fundo escuro sem esconder o texto */
+h2 {
+  color: var(--cor-azul-vibrate) !important;
+  font-weight: 600;
+}
+
+/* Textos comuns pretos */
+p, label, span {
+  color: #070606 !important;
+}
+
+
+/* Box de destaque com cor da paleta */
 .highlight-box {
-    background-color: rgba(99, 48, 103);
-    padding: 1rem 1.5rem;
-    border-radius: 12px;
+  background-color: #FF7F3F; /* roxo translúcido */
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--cor-roxo);
+  color: var(--cor-texto);
+}
+
+/* Exemplo: botão estilizado com hover */
+button {
+  background-color: var(--cor-laranja);
+  color: #ea0b0b;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(#FF7F3F);
 }
