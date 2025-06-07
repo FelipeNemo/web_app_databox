@@ -1,0 +1,50 @@
+﻿Sistema databox
+Autor: Felipe Augusto Batista Mendes dos Santos
+Ferramentas: Python, CSS, HTML, OPENAI
+
+
+Assistência: 
+1. Artificial Assistance: Assistência imposta ou facilitada pelo sistema para auxiliar o usuário. Como diminuir dificuldade, dicas e instruções.
+2. Personalization: O sistema aprende sobre o usuário perguntando diretamente ou analisando o comportamento dentro do sistema e adaptá o que e como ele se apresenta (recomendar atividades ou dificuldade adaptativa).
+
+
+Altruísmo:
+1. Exploratory World: O sistema permite ao usuário ser livre para explorar.
+
+
+Customização: 
+1. Customization: O sistema permite personalizar representações ou outros aspectos da experiência do usuário.
+
+
+Imersão: 
+1. Narrative ou Theme: O sistema é descrito por meio de um tema/premissa central real.
+
+
+Incentivo: 
+1. Badges ou Achievements: O sistema permite receber reconhecimento visual permanente, por meio de badges, certificates, achievements ao cumprir metas e desafios.
+2. Collections: O sistema permite completar coleções de itens ou conquistas. 
+3. Points ou Scoring:O sistema permite receber pontos ou experiência por completar tarefas específicas. Os pontos podem ser usados para progressão ou resgatar recompensas.
+4. Rewards ou Prizes: O sistema permite receber recompensas ou prêmios ao concluir quests ou challenges ou ao ganhar badges ou achievements específicas ou progredir para níveis específicos.
+5. Unlockble Content:O sistema permite desbloquear conteúdo (dentro ou fora do sistema) depois de atingir certos marcos, alcançar um objetivo específico ou explorar diferentes caminhos.
+
+
+Progressão: 
+1. Learning : O sistema convida a aprender novas habilidades que podem ser úteis para o usuário.
+2. Levels ou Progress Feedback:  O sistema dá ao usuário uma indicação do seu progresso em uma tarefa específica ou no conteúdo geral do aplicativo, e até onde o usuário precisa ir para ter sucesso ou concluir a tarefa e alcançar o próximo nível.
+3. Meaning ou Purpose: O sistema deixa o usuário escolher entre diferentes formas de completar tarefas ou diferentes recompensas e as escolhas podem levar a diferentes resultados.
+
+
+Risco/recompensa:
+1. Lotteries: O sistema permite ganhar recompensas com base em mera sorte
+2. Quests ou Challenges: O sistema permite completar tarefas específicas para atingir objetivos significativos e lidar com tarefas difíceis para testar as habilidades ou conhecimentos em troca de recompensas.
+
+
+
+
+
+
+Socialização: 
+1. Social Competition: O sistema permite ao usuário desafiar-se contra outros usuários.
+2. Social Cooperation : O sistema permite trabalhar em conjunto com outros usuários, por exemplo, como parte de uma equipe ou guilda, para atingir uma meta
+3. Social Networking: O sistema permite que os usuários façam conexões uns com os outros, ao combinar usuários semelhantes ou por buscas de usuários, e expressar ou agir de acordo com essas conexões, por meio de presentes, comentários ou mensagens.
+4. Social Status: O sistema permite promover-se para maior visibilidade, tornando as conquistas ou progressos do usuário visíveis para os outros.
