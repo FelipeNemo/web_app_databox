@@ -1,0 +1,100 @@
+html, body {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+body, .stApp, main, section, article, aside, nav, footer, .block-container, .css-18e3th9, .css-1d391kg {
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.39) !important;
+  backdrop-filter: blur(32px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(32px) saturate(180%) !important;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+  color: #f3f3f3;
+}
+
+/* 
+
+*/
+
+
+/* Remove fundo branco padrão do Streamlit 
+
+div.stApp {
+  background: transparent !important;
+}
+*/
+header[data-testid="stHeader"] {
+  background-color: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(32px) saturate(180%);
+  -webkit-backdrop-filter: blur(32px) saturate(180%);
+  border-bottom: 1px solid rgba(98, 89, 89, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+}
+
+
+
+
+/* Cartões e caixas com efeito vidro 
+
+.frosted-box {
+  width: 100%;
+  min-height: 100%;
+  background: rgba(30, 30, 30, 0.45); /* Fundo escuro com leve transparência rgba(30, 30, 30, 0.45) 
+  border-radius: 0;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+  border: none;
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  padding: 2rem 2.5rem;
+  margin: 0;
+  color: #f3f3f3;
+  position: relative;
+} */
+
+.frosted-box {
+  width: 100%;
+  min-height: 100%;
+  background: rgba(30, 30, 30, 0.45); /* Fundo escuro com leve transparência rgba(30, 30, 30, 0.45) */
+  border-radius: 0;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+  border: none;
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(50px) saturate(180%);
+  padding: 2rem 2.5rem;
+  margin: 0;
+  color: #f3f3f3;
+  position: relative;
+}
+
+/* Títulos brancos */
+h1 {
+  color: var(--cor-azul-vibrate) !important;  /* var(--cor-texto) = branco (#dcdcdc) */
+}
+
+h2, h3 {
+  color: var(--cor-azul-vibrate) !important;
+  font-weight: 600;
+}
+
+/* Textos comuns pretos */
+p, label, span {
+  color: #f1ecec !important;
+}
+
+
+
+html, body {
+  height: 100%;
+}
+
+.stApp {
+  min-height: 100vh !important;
+  display: flex;
+  flex-direction: column;
+}
+
+main, .block-container {
+  flex: 1 0 auto;
+  min-height: 100vh !important;
+}
