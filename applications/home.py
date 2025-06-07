@@ -1,3 +1,5 @@
+"""Login e roteamento"""
+
 import streamlit as st
 import os
 from dotenv import load_dotenv
@@ -6,7 +8,7 @@ import base64
 import hashlib
 from streamlit.components.v1 import html
 from utils import aplicar_css_personalizado, enviar_email
-from master.imper import pagina_master
+from admin.homeMaster import pagina_master
 
 
 # =====================
