@@ -3,6 +3,34 @@ html, body {
   margin: 0;
   padding: 0;
 }
+/*um texto */
+.cards-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+
+.cards-container .frosted-box {
+    width: 400px;
+    height: 900px;
+}
+
+
+@media (max-width: 768px) {
+    .cards-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cards-container .frosted-box {
+        width: 90vw;
+        height: auto;
+        min-height: 600px;
+    }
+} 
 
 body, .stApp, main, section, article, aside, nav, footer, .block-container, .css-18e3th9, .css-1d391kg {
   min-height: 100vh;

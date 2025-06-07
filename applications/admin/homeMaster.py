@@ -61,8 +61,10 @@ def salvar_dados(master, path='data/master.json'):
     with open(path, 'w') as f:
         json.dump(master.to_dict(), f, indent=4)
 
+
 def pagina_master():
-    st.title("Área Master")
+    st.markdown("<h2 style='text-align: center; color: white;'>Bem-vindo, Felipe</h2>", unsafe_allow_html=True)
+    
 
     # 🔧 Carrega CSS, se existir
     try:
@@ -71,41 +73,47 @@ def pagina_master():
     except FileNotFoundError:
         st.warning("Estilo visual não encontrado.")
 
-    # 🧠 Carrega dados do JSON ou inicia padrão
+    #Carrega dados
     master = carregar_dados()
 
-    # 🧱 Interface com 3 colunas
-    col1, col2, col3 = st.columns(3)
+  # --- Blocos centralizados horizontalmente
+    # Monta HTML com blocos
+    colunas_html = f"""
+    <div class="cards-container">
+        <div class="frosted-box" style="width: 400px; height: 900px;">
+            <h3 style="text-align:center;">Status</h3>
+            <p><strong>Nível:</strong> {master.nivel}</p>
+            <p><strong>XP:</strong> {master.xp}</p>
+            <p><strong>Moedas:</strong> {master.moedas}</p>
+            <p><strong>Emblemas:</strong></p>
+            {"<ul>" + "".join(f"<li>{e}</li>" for e in master.emblemas) + "</ul>" if master.emblemas else "<em>Sem emblemas ainda.</em>"}
+        </div>
+        <div class="frosted-box" style="width: 400px; height: 900px;">
+            <h3 style="text-align:center;">Menu</h3>
+            <p style="text-align:center;"><em>Use os campos abaixo:</em></p>
+        </div>
+        <div class="frosted-box" style="width: 400px; height: 900px;">
+            <h3 style="text-align:center;">Habilidades</h3>
+            {("<ul>" + "".join(f"<li>{q}</li>" for q in master.quests_concluidas) + "</ul>") if master.quests_concluidas else "<em>Nenhuma missão concluída.</em>"}
+        </div>
+    </div>
+    """
 
-    # Coluna 1 – Habilidades
-    with col1:
-        st.subheader("Habilidades")
-        st.metric("Nível", master.nivel)
-        st.metric("XP", master.xp)
-        st.metric("Moedas", master.moedas)
 
-        st.markdown("**Habilidades**")
-        if master.emblemas:
-            for e in master.emblemas:
-                st.markdown(f"- {e}")
+    # Renderiza HTML com permissão
+    st.markdown(colunas_html, unsafe_allow_html=True)
 
-    # 🧩 Coluna 2 – Menu
-    with col2:
-        st.subheader("Menu")
+    st.markdown("""
+    <div class="frosted-box" style="margin-top:32px;">
+        <hr style='margin:32px 0;'>
+        <p style='color:#888;'>Menu de funcionalidades futuras:</p>
+        <ul style='font-size:18px; color:#555; text-align:left; display:inline-block;'>
+            <li>Gestão de usuários</li>
+            <li>Dashboards avançados</li>
+            <li>Relatórios customizados</li>
+            <li>Configurações do sistema</li>
+            <li>Integração com IA</li>
+        </ul>
+    </div>
+    """, unsafe_allow_html=True)
 
-        xp_input = st.number_input("Ganhar XP", min_value=0, step=10)
-        master.ganhar_xp(xp_input)
-        quest_diaria = st.text_input("Notificação: Missão diária")
-        master.registrar_quest(quest_diaria)
-        novo_emblema = st.text_input("Notificação: Nova habilidade")
-        master.adicionar_emblema(novo_emblema)
-        nova_quest = st.text_input("Notificação: Nova missão")
-        master.registrar_quest(nova_quest)
-        
-
-    # 📋 Coluna 3 – Status
-    with col3:
-        st.subheader("Status")
-        if master.quests_concluidas:
-            for q in master.quests_concluidas:
-                st.markdown(f"- {q}")
